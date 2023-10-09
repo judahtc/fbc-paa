@@ -1,0 +1,104 @@
+<head>
+
+	<style>
+
+		.threa{
+
+			padding: 1%;
+        
+			padding-bottom: -1%;
+			font-size: 80%;
+            font-size: 80%;
+            color: #1e5472;
+			box-shadow:  4px 4px 1px lightblue;
+			background: linear-gradient(to top right, rgb(227, 225, 239) 0%, rgb(203, 226, 230) 100%);
+			
+			}
+
+                .booking-form .form-btn {
+                    margin-bottom: 10px;
+                }
+
+                .booking-form .submit-btn {
+                    background: #184c8f;
+                    border: none;
+                    text-transform: uppercase;
+                    height: 30px;
+                    font-size: 13px;
+                    width: 100%;
+                    color: #fff;
+                    border-radius: 4px;
+                    display: block;
+                }
+
+            tr{
+                line-height: 3px;
+                min-height: 3px;
+                height: 3px;
+                }
+		</style>
+</head>
+<body >
+    <span style="color:rgb(215, 229, 235);font-weight: 700;font-size: 80%;">Lc </span>
+
+<div class="threa">
+    <div class="twooo">
+	<table class="table table-striped">
+        <thead>
+            <tr><th>Groups</th><th></th></tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let lrc_groups of lcgroups| slice: (page-1) * pageSize : page * pageSize">
+                <td>{{lrc_groups}}</td><td><i class="fa fa-book"></i></td>
+            </tr>
+        </tbody>
+    </table>
+    <ngb-pagination *ngIf="myerror==null"
+    [(page)]="page"
+    [pageSize]="pageSize"
+    [collectionSize]="mylenghth"></ngb-pagination>
+	<button type="submit" (click)="[calculateAll_lc()]" class="btn btn-outline-dark" name="filesupload" *ngIf="myerror==null">Execute 
+
+        <span *ngIf="done1" style="font-size: 60%;color:#184c8f">
+            <span class="spinner-border" role="status" style="height: 15px;width:15px">
+              <span class="sr-only" id="loading" style="height: 15px;width:15px"></span>
+            </span>
+        </span>
+    
+    </button>
+</div>
+</div>
+
+<!-- <div class="threa">
+    <div class="threee" *ngIf="files">
+	<table class="table table-striped">
+        <thead>
+            <tr><th>Groups</th><th></th></tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let lcfilename of lcfilenames| slice: (page-1) * pageSize : page * pageSize">
+                <td>{{lcfilename}}</td><td><a href="portal/viewfiles_lc/{{lcfilename}}">view</a><i style="font-size: 80%;" class="fa fa-file" aria-hidden="true"></i></td>
+            </tr>
+        </tbody>
+    </table>
+    <ngb-pagination
+    [(page)]="page"
+    [pageSize]="pageSize"
+    [collectionSize]="lcfilenames.length"></ngb-pagination>
+	<button type="submit" (click)="[lc_all_results_download()]" class="btn btn-outline-dark" name="filesupload" >Download All
+
+        <span *ngIf="done" style="font-size: 60%;color:#184c8f">
+            <span class="spinner-border" role="status" style="height: 15px;width:15px">
+              <span class="sr-only" id="loading" style="height: 15px;width:15px"></span>
+            </span>
+        </span>
+    
+    </button>
+</div>
+</div> -->
+
+<div class="error" *ngIf="myerror!=null">
+    <div class="alert alert-danger" style="font-size: 80%;margin-top: 1%;" >{{myerror.error.detail}} </div>
+</div>
+
+</body>

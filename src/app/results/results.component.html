@@ -1,0 +1,20 @@
+<style>
+    a.selected {
+  background-color: rgb(214, 225, 234);
+}
+</style>
+<div style="font-size: 80%;" class="d-flex justify-content-between align-items-center">
+<a routerLink="/portal/results"  (click)="[activate_lrc(),onLinkClick()]" [class.selected]="isLinkSelected"><i style="color:rgb(215, 229, 235) ;margin-right: 5px;margin-left: -10px;" class="fa fa-download"></i>Liability for Remaining Coverage </a>
+<a routerLink="/portal/results" (click)="[activate_lc(),onLinkClick1()]" [class.selected]="isLinkSelected1"><i style="color:rgb(215, 229, 235) ;margin-right: 5px;" class="fa fa-download"></i>Loss Component </a>
+<a routerLink="/portal/results" (click)="[activate_lic(),onLinkClick2()]" [class.selected]="isLinkSelected2"><i style="color:rgb(215, 229, 235) ;margin-right: 5px;" class="fa fa-download"></i>Liability for Incurred Claims </a>
+<a routerLink="/portal/results" (click)="[activate_arc(),onLinkClick3()]" [class.selected]="isLinkSelected3"><i style="color:rgb(215, 229, 235) ;margin-right: 5px;" class="fa fa-download"></i>Asset for Remaining Coverage </a>
+<a routerLink="/portal/results" (click)="[activate_aric(),onLinkClick4()]" [class.selected]="isLinkSelected4"><i style="color:rgb(215, 229, 235) ;margin-right: 5px;" class="fa fa-download"></i>Amounts Recoverable on Incurred Claims </a>
+</div>
+
+
+
+<app-filenames *ngIf="lrc"></app-filenames>
+<app-filenames-lc *ngIf="lc"></app-filenames-lc>
+<app-filenames-lic *ngIf="lic"></app-filenames-lic>
+<app-filenames-arc *ngIf="arc"></app-filenames-arc>
+<app-filenames-aric *ngIf="aric"></app-filenames-aric>

@@ -1,0 +1,306 @@
+<head>
+  <!-- <link
+    href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.css"
+    rel="stylesheet"  type='text/css'>
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet"> -->
+
+  <style>
+    .booking-form .form-btn {
+      margin-bottom: 10px;
+    }
+
+    .booking-form .submit-btn {
+      background: #184c8f;
+      border: none;
+      margin-top: 2%;
+      text-transform: uppercase;
+      height: 30px;
+      font-size: 13px;
+      width: 100%;
+      color: #fff;
+      border-radius: 4px;
+      display: block;
+    }
+
+    tr {
+      line-height: 2px;
+      min-height: 2px;
+      height: 2px;
+    }
+  </style>
+</head>
+
+<body style="margin-top: -1%">
+  <div>
+    <div class="d-flex justify-content-between align-items-center">
+      <span style="color: rgb(127, 180, 220); font-size: 80%">
+        PROJECTS({{ number_of_projects }})
+      </span>
+      <span>
+        <a style="font-size: 95%; color: blue; font-weight: 200" routerLink="/portal/projects"
+          (click)="open(content)"><i class="fa fa-plus" style="color: green; font-size: 80%" title="Edit"></i>
+          create project</a>
+      </span>
+    </div>
+    <!-- <span style="margin-top: -5%;"></span> -->
+    <div class="table-responsive custom-table-responsive">
+      <p style="color: rgb(48, 106, 173); font-size: 70%">
+        active project:&nbsp;&nbsp;<span style="color: navy; font-weight: 500">{{ active_project }}</span>
+      </p>
+      <hr style="box-shadow: 1px 1px 1px rgb(45, 173, 216); margin-top: -1%" />
+      <table class="table custom-table table-striped overflow-auto"
+        style="font-size: 80%; box-shadow: 2px 2px 1px lightblue">
+        <thead>
+          <tr style="color: rgb(48, 106, 173)">
+            <th scope="col"></th>
+            <th scope="col">Project Name</th>
+            <th scope="col">Project Id</th>
+            <th scope="col">
+              <i class="fa fa-filter"></i> <i class="fa fa-sort"></i>Date
+              Created
+            </th>
+            <th scope="col">Start Date</th>
+            <th scope="col">Valuation Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="
+              let i = index;
+              let project;
+              of: projects | slice : (page - 1) * pageSize : page * pageSize
+            ">
+            <td style="font-weight: bold; color: dimgray">{{ i + 1 }}</td>
+            <td>{{ project.project_name }}</td>
+            <td>
+              {{ project.project_id }}
+            </td>
+
+            <td>
+              {{ project.created_at }}
+            </td>
+
+            <td>
+              {{ project.start_date }}
+            </td>
+
+            <td>
+              {{ project.valuation_date }}
+            </td>
+
+            <td>
+              <a href="/portal/projects/{{ project.project_id }}" class="nav-link bg-info rounded" style="
+                  padding: 8px;
+                  width: 65px;
+                  text-align: center;
+                  color: #fff;
+                ">config</a>
+            </td>
+            <td>
+              <a routerLink="/portal/projects/" (click)="[currentProject(project.project_id)]"
+                class="nav-link bg-success rounded" style="
+                  padding: 8px;
+                  color: #fff;
+                  width: 65px;
+                  text-align: center;
+                ">activate</a>
+            </td>
+
+            <!-- <td><form action="portal/editAppoint/{{appointments.appointmentId}}"><button class="btn btn-lg btn-outline-primary" (click)="open(content)">edit</button></form>
+                      </td>
+                      <td><button class="btn btn-lg btn-outline-primary" (click)="open(content)">cancel</button></td>
+                        -->
+          </tr>
+        </tbody>
+      </table>
+
+      <ngb-pagination [(page)]="page" [pageSize]="pageSize" [collectionSize]="projects.length"></ngb-pagination>
+    </div>
+  </div>
+</body>
+
+<!-- CREATE PROJECT MODAL -->
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 style="color: rgb(0, 96, 128)" class="modal-title" id="modal-basic-title">
+      Create Project
+    </h4>
+  </div>
+  <div class="modal-body">
+    <section>
+      <div id="booking" class="section">
+        <div class="section-center">
+          <div class="container">
+            <div class="row">
+              <div class="booking-form">
+                <form [formGroup]="form" (ngSubmit)="[createProjectDB()]">
+                  <div class="">
+                    <div class="form-group" style="margin-bottom: 2%">
+                      <input formControlName="project_name" name="project_name" class="form-control" type="text"
+                        placeholder="Project Name" />
+                    </div>
+                  </div>
+
+                  <div class="" style="margin-bottom: 1.3%;">
+                    <div class="form-group">
+                      <input formControlName="start_date" name="start_date" class="form-control"
+                        placeholder="yyyy-mm-dd" type="date" required />
+                      <span style="
+                          font-size: 70%;
+                          margin-left: 0.75%;
+                          color: #184c8f;
+                        " class="">Start Date</span>
+                    </div>
+                  </div>
+                  <div class="" style="margin-bottom: 1.3%;">
+                    <div class="form-group">
+                      <input formControlName="valuation_date" name="valuation_date" class="form-control"
+                        placeholder="yyyy-mm-dd" type="date" required />
+                      <span style="
+                          font-size: 70%;
+                          margin-left: 0.75%;
+                          color: #184c8f;
+                        " class="">Valuation Date</span>
+                    </div>
+                  </div>
+                  <div class="">
+                    <div class="form-group">
+                      <textarea class="form-control" id="exampleFormControlTextarea1" rows="2"
+                        formControlName="description" name="description" id="description"></textarea>
+                      <span style="
+                          font-size: 80%;
+                          margin-left: 0.7%;
+                          color: midnightblue;
+                        " class="">Description</span>
+                    </div>
+                  </div>
+
+
+
+                  <div class="">
+                    <div class="form-btn">
+                      <button class="btn btn-outline-darkb">
+                        Create
+                      </button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+</ng-template>
+
+<!-- --------------------Activate Modal---------------------------- -->
+
+<ng-template #activate let-modal>
+  <div class="modal-header">
+    <h6 class="modal-title" id="modal-basic-title">Project Activation</h6>
+    <button type="button" class="btn-close" aria-label="Close" (click)="[modal.dismiss('Cross click')]"></button>
+  </div>
+  <div class="modal-body">
+    Project {{ myproject_name }} successfully activated
+  </div>
+
+  <div class="modal-footer">
+    <button id="" type="button" class="btn btn-outline-dark" (click)="reloadme()">
+      Close
+    </button>
+  </div>
+</ng-template>
+
+<!-- ----------------------------UPDATE MODAL------------------ -->
+
+<ng-template #updateModal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Update your project</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <section class="gradient-custom">
+      <div class="container">
+        <div class="row justify-content-center align-items-center h-100">
+          <div class="">
+            <form action="#">
+              <div class="row">
+                <div class="col-md-6 mb-4">
+                  <div class="form-outline">
+                    <input type="text" id="serviceType" class="form-control form-control-lg"
+                      formControlName="serviceType" name="serviceType" id="serviceType" placeholder="" ngModel />
+                    <label class="form-label" for="serviceType">Service Type</label>
+                  </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                  <div class="form-outline">
+                    <input type="text" class="form-control form-control-lg" formControlName="description"
+                      name="description" id="description" placeholder="" ngModel />
+                    <label class="form-label" for="description">Description</label>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-6 mb-4 d-flex align-items-center">
+                  <div class="form-outline datepicker w-100">
+                    <input type="text" class="form-control form-control-lg" formControlName="appointDate"
+                      name="appointDate" id="appointDate" placeholder="" ngModel />
+                    <label for="appointDate" class="form-label">Date</label>
+                  </div>
+                </div>
+                <div class="col-md-6 mb-4 d-flex align-items-center">
+                  <div class="form-outline datepicker w-100">
+                    <input type="text" class="form-control form-control-lg" formControlName="appointTime"
+                      name="appointTime" id="appointTime" ngModel />
+                    <label for="time" class="form-label">Time</label>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-6 mb-4 pb-2">
+                  <div class="form-outline">
+                    <select class="form-select form-select-lg" formControlName="barberId" ngModel>
+                      <option value=""></option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-md-6 mb-4 pb-2">
+                  <div class="form-outline">
+                    <input type="number" class="form-control form-control-lg" value="" formControlName="custId"
+                      placeholder="" readonly ngModel />
+                  </div>
+                </div>
+              </div>
+
+              <B></B>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="modal-footer">
+    <button type="submit" class="btn btn-outline-dark">Update</button>
+    <button type="submit" class="btn btn-outline-dark">Close</button>
+  </div>
+</ng-template>
+<!-- RESPONSE -->
+<ng-template #content1 let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" style="color: grey" id="modal-basic-title">
+      Response
+    </h4>
+    <button type="button" class="btn-close" aria-label="Close"
+      (click)="[openUploadLink(), modal.dismiss('Cross click')]"></button>
+  </div>
+  <div class="modal-body">
+    <p style="color: navy">{{ result }}</p>
+  </div>
+
+  <hr />
+
+  <pre></pre>
+</ng-template>

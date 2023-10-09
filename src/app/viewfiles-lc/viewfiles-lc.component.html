@@ -1,0 +1,66 @@
+
+
+<head>
+     
+    <style>
+       :-webkit-scrollbar {
+     display: none;
+   }
+
+   
+   </style>
+
+</head>
+
+<body class="overflow-hidden">
+ 
+   <div id="booking" class="section">
+       <div class="section-center">
+           <div class="container">
+               <div class="row">
+     
+
+                       <div  style="overflow-x:auto;width: 100%">
+   
+
+                               <table class="table table-striped" >
+                                   <thead>
+                                       <tr style="font-size: 70%;;">
+                                           <th *ngFor="let keys of key">{{keys}}</th>
+                                       </tr>
+                                   </thead>
+                                   <tbody>
+                                       <tr *ngFor="let table of single_file" style="font-size: 70%;">
+                                           <td *ngFor="let values of key">{{table[values]}}</td>
+                                       </tr>
+                                   </tbody>
+                               </table>
+
+
+
+                       </div>
+
+                       
+                   
+               </div>
+           </div>
+       </div>
+   </div>
+
+<button (click)="allfiles()" type="submit" class="btn btn-outline-dark" name="filesupload"  style="margin-right: 10px;">Back 
+
+
+</button>      
+
+<button (click)="single_file_download()" type="submit" class="btn btn-outline-dark" name="filesupload" >Download 
+
+    <span *ngIf="done" style="font-size: 60%;color:#184c8f">
+        <span class="spinner-border" role="status" style="height: 15px;width:15px">
+          <span class="sr-only" id="loading" style="height: 15px;width:15px"></span>
+        </span>
+    </span>
+
+</button>
+
+
+</body>

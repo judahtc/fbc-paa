@@ -1,0 +1,52 @@
+ngb-pagination ::ng-deep a {
+    color: dimgrey !important;
+    font-size: 70%;
+    font-weight: bold;
+  }
+  
+  ngb-pagination ::ng-deep .page-item.active .page-link {
+    border-color: dimgrey;
+    background-color: lightgrey;
+  }
+  
+  ngb-pagination ::ng-deep .page-item.active .page-link:focus, .page-link:not(:disabled):not(.disabled):active:focus {
+    box-shadow: 0 0 0 0.1rem dimgrey;
+  }
+  
+  ngb-pagination ::ng-deep .page-link:not(:disabled):not(.disabled):active:focus {
+    box-shadow: 0 0 0 0.1rem dimgrey;
+  }
+
+  .upload-icon {
+    margin: 25px 2px 2px 2px;
+  }
+  
+  .upload-input {
+    position: relative;
+    top: -62px;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+  }
+  
+  .btn {
+    display: block;
+    width: 100%;
+    height: 30px;
+    background: rgb(127, 180, 220);
+  
+    color: #fff;
+    border-radius: 3px;
+    border: 0;
+    box-shadow: 0 3px 0 0 rgb(112, 153, 188);
+    transition: all 0.3s ease-in-out;
+    font-size: 14px;
+  }
+  
+  .btn:hover {
+    background:rgb(139, 191, 231);
+    box-shadow: 0 3px 0 0 rgb(112, 153, 188);
+  }
+  
+  

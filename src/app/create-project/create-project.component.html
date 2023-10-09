@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+	<title>createProject</title>
+
+	<!-- Google font -->
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:300,600" rel="stylesheet">
+
+	<!-- Bootstrap -->
+	<!-- <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" /> -->
+
+	<!-- Custom stlylesheet -->
+	<!-- <link type="text/css" rel="stylesheet" href="css/style.css" /> -->
+
+	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+	<!--[if lt IE 9]>
+		  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+		  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+		<![endif]-->
+
+</head>
+
+<body>
+
+
+	<div id="booking" class="section">
+		<div class="section-center">
+			<div class="container" style="margin-top: -15%;">
+
+
+				<div class="row">
+					<div class="booking-form">
+						<form [formGroup]="form" (ngSubmit)="[createProjectDB(),open(content)]" action="#">
+							<div class="">
+								<div class="form-group">
+									<input class="form-control" type="text" formControlName="project_name"
+										name="project_name" placeholder="Project Name" ngModel />
+
+								</div>
+							</div>
+							<div class="">
+								<div class="form-group">
+									<input class="form-control" formControlName="start_date" name="start_date"
+										placeholder="yyyy-mm-dd" type="date" required>
+									<br><span style="font-size: 80%;margin-left: 0.7%;color: midnightblue;"
+										class="">Start Date</span>
+								</div>
+							</div>
+							<div class="" style="margin-top:-2%">
+								<div class="form-group">
+									<input class="form-control" formControlName="valuation_date" name="valuation_date"
+										placeholder="yyyy-mm-dd" type="date" required>
+									<br><span style="font-size: 80%;margin-left: 0.7%;color: midnightblue;"
+										class="">Valuation Date</span>
+								</div>
+							</div>
+
+							<div class="" style="margin-top:-2%">
+								<div class="form-group">
+									<textarea class="form-control" id="exampleFormControlTextarea1" rows="2"
+										formControlName="description" name="description" id="description"></textarea>
+									<br><span style="font-size: 80%;margin-left: 0.7%;color: midnightblue;"
+										class="">Description</span>
+								</div>
+							</div>
+
+
+							<div class="" style="margin-top: 0%">
+								<div class="form-group">
+									<select class="form-control" id="prev_project_id" formControlName="prev_project_id"
+										name="prev_project_id">
+										<option value="">Select Project </option>
+										<br>
+										<option *ngFor="let value of projects" value="{{value.project_id}}">
+											<span style="font-size: 60%;">
+												{{value.project_id}}
+											</span>
+											.
+											<span style="font-size: 60%;font-weight: bolder;">
+												{{value.project_name}}
+											</span>
+										</option>
+
+										<!-- Add more options as needed -->
+									</select>
+									<br>
+									<span style="font-size: 80%; margin-left: 0.7%; color: midnightblue;">Import opening
+										balances from
+										project</span>
+								</div>
+							</div>
+
+
+
+
+							<!-- <div class="form-check form-switch" style="margin-top: -2%;margin-bottom: 3%;margin-left: 0.4%;">
+								<label style="font-size: 80%;color: midnightblue;" class="form-check-label" for="flexSwitchCheckChecked">Monthly</label>
+								<input formControlName="monthly" name="monthly" class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked>
+							</div>
+							 -->
+							<div class="">
+								<div class="form-btn">
+									<button class="btn btn-outline-dark">Create Project</button>
+								</div>
+							</div>
+
+
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+
+
+<ng-template #content let-modal>
+	<div class="modal-header">
+		<h4 class="modal-title" style="color: grey" id="modal-basic-title">Response</h4>
+		<button type="button" class="btn-close" aria-label="Close"
+			(click)="[modal.dismiss('Cross click'),openProjectsLink()]"></button>
+	</div>
+	<div class="modal-body">
+
+		<p style="color:navy ;">{{result}}
+			<span *ngIf="done" style="font-size: 60%;color:#184c8f">
+				<div
+					style="margin-left: auto; margin-right: auto;  display: flex;justify-content: center;align-items: center;">
+					<span class="spinner-border" role="status"
+						style="height: 30px;width:30px;align-items: center;margin-left: auto; margin-right: auto;">
+						<span class="sr-only" id="loading"
+							style="height: 30px;width:30px;margin-left: auto; margin-right: auto;"></span>
+					</span>
+				</div>
+			</span>
+		</p>
+	</div>
+	<div class="modal-footer">
+		<button class="btn" type="submit" (click)="[openUploadLink(),modal.dismiss('Cross click')]">close</button>
+	</div>
+
+
+</ng-template>
+
+
+
+
+
+</html>

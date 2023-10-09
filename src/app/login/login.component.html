@@ -1,0 +1,109 @@
+<div id="logreg-forms">
+  <form class="form-signin" [formGroup]="form" ngNativeValidate>
+    <h1 class="h3 mb-3 font-weight-normal" style="text-align: center"> Sign in
+
+    </h1>
+
+    <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required="" autofocus=""
+      formControlName="email" name="email" required="true">
+    <input type="password" id="inputPassword" class="form-control" placeholder="Password" required=""
+      formControlName="password" name="password" required>
+
+    <button class="btn btn-success btn-block" type="submit" (click)="[onSubmit()]"><i class="fas fa-sign-in-alt"></i>
+      Sign in
+      <span *ngIf="add" style="font-size: 60%;color:white;">
+        <span class="spinner-border" role="status" style="height: 12px;width:12px">
+          <span class="sr-only" id="loading" style="height: 12px;width:12px"></span>
+        </span>
+      </span></button>
+    <a routerLink="#" id="forgot_pswd" (click)="open1(content1)">Forgot password?</a>
+    <!-- <a href="#" id="forgot_pswd" (click)="open1(content1)">OTP</a> -->
+    <hr>
+
+    <i *ngIf="respo" style="font-size: 70%;color:red;margin-top: -2%;">{{response1}}</i>
+
+
+
+
+    <br>
+  </form>
+</div>
+
+
+
+
+<ng-template #content1 let-modal>
+  <div style="width: 105%;margin: auto;padding: -5%;padding-bottom: 2%;">
+
+    <!-- <div class="modal-body"> -->
+    <button style="float: right;" type="button" class="btn-close" aria-label="Close"
+      (click)="[modal.dismiss('Cross click')]"></button>
+
+    <div class="container padding-bottom-3x mb-2 ">
+      <div class="row justify-content-center">
+        <div class="col-lg-8 col-md-10">
+
+
+          <form class="card mt-4">
+            <div class="card-body">
+              <div class="form-group">
+                <input class="form-control" formControlName="email" type="text" id="email" name="email"
+                  required=""><small class="form-text text-muted">Enter the email address. We will
+                  email a link to the password reset page to this address.</small>
+              </div>
+            </div>
+            <div class="card-footer">
+              <button class="btn btn-success" type="submit" (click)="forgotPassword()">Get New
+                Password</button>
+              <!-- <button class="btn btn-danger" type="submit">Back to Login</button> -->
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+  </div>
+</ng-template>
+<ng-template #content let-modal>
+  <div style="width: 105%;margin: auto;padding: -5%;padding-bottom: 2%;">
+
+    <!-- <div class="modal-body"> -->
+    <button style="float: right;" type="button" class="btn-close" aria-label="Close"
+      (click)="[modal.dismiss('Cross click')]"></button>
+
+    <div class="container padding-bottom-3x mb-2 ">
+      <div class="row justify-content-center">
+        <div class="col-lg-8 col-md-10">
+
+
+          <form class="card mt-4">
+            <div class="card-body">
+              <small style="font-size: 80%;">Enter the 6 digit One-Time-Password from your authenticator app <i
+                  class="fa fa-mobile" style="font-size: 90%;"></i></small>
+              <div class="form-group">
+                <input class="form-control" type="text" id="otp" name="otp" required=""><small
+                  class="form-text text-muted">Please enter the one time password to proceed to your
+                  account</small><br>
+                <small style="color: rgb(128, 0, 26);">OTP expires in <b>0:{{timeLeft}}</b></small>
+              </div>
+            </div>
+            <div class="card-footer d-flex justify-content-between align-items-center" style="font-size: 80%;">
+              <button class="btn btn-success" type="submit" (click)="check_otp()">Submit OTP</button>
+              <button class="btn btn-success" type="submit" (click)="onSubmit()"> Resend</button>
+              <!-- <button class="btn btn-danger" type="submit">Back to Login</button> -->
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+  </div>
+</ng-template>

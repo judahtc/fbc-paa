@@ -1,0 +1,94 @@
+<head>
+
+    <style>
+        .threa {
+
+            padding: 1%;
+
+            padding-bottom: -1%;
+
+            font-size: 80%;
+            font-size: 80%;
+            color: #1e5472;
+            box-shadow: 4px 4px 1px lightblue;
+            background: linear-gradient(to top right, rgb(227, 225, 239) 0%, rgb(203, 226, 230) 100%);
+
+        }
+
+        .booking-form .form-btn {
+            margin-bottom: 10px;
+        }
+
+        .booking-form .submit-btn {
+            background: #184c8f;
+            border: none;
+            text-transform: uppercase;
+            height: 30px;
+            font-size: 13px;
+            width: 100%;
+            color: #fff;
+            border-radius: 4px;
+            display: block;
+        }
+
+        tr {
+            line-height: 3px;
+            min-height: 3px;
+            height: 3px;
+        }
+    </style>
+</head>
+
+<div class="threa">
+    <a style="float: right;color: #1e5472;" routerLink="/portal/filenames_lic/{{pro_id}}"
+        (click)="export_balances()">generate
+        closing balances <i class="fa fa-gear" style="margin-left: 2px;margin-right: 2px;"></i> <span *ngIf="eb"
+            style="font-size: 60%;color:#184c8f">
+            <span class="spinner-border" role="status" style="height: 10px;width:10px">
+                <span class="sr-only" id="loading" style="height: 10px;width:10px"></span>
+            </span>
+        </span></a><br>
+    <hr>
+    <div class="twoo">
+        <table class="table table-striped">
+
+            <thead>
+                <tr>
+                    <th>File Names</th>
+                    <th></th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr *ngFor="let lrcfilenames of lrcfilename| slice: (page-1) * pageSize : page * pageSize">
+                    <td>{{lrcfilenames}}</td>
+                    <td> <a routerLink="/portal/filenames_lic/{{pro_id}}"
+                            (click)="single_file_download(lrcfilenames+'.csv')"><i style="font-size: 80%;"
+                                class="fa fa-download" aria-hidden="true"></i></a></td>
+                    <td><a href="portal/viewfiles/{{lrcfilenames}}">view</a> <i style="font-size: 80%;"
+                            class="fa fa-file" aria-hidden="true"></i> </td>
+                </tr>
+            </tbody>
+
+        </table>
+        <ngb-pagination [(page)]="page" [pageSize]="pageSize" [collectionSize]="lrcfilename.length"></ngb-pagination>
+
+        <button type="submit" (click)="[back()]" class="btn btn-outline-dark" name="filesupload"
+            style="margin-right: 1%;">Back
+
+
+        </button>
+
+
+        <button type="submit" (click)="[lic_all_results_download()]" class="btn btn-outline-dark"
+            name="filesupload">Download All
+
+            <span *ngIf="done" style="font-size: 60%;color:#184c8f">
+                <span class="spinner-border" role="status" style="height: 15px;width:15px">
+                    <span class="sr-only" id="loading" style="height: 15px;width:15px"></span>
+                </span>
+            </span>
+
+        </button>
+    </div>
+</div>

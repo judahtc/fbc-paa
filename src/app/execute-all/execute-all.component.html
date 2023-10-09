@@ -1,0 +1,176 @@
+<head>
+
+  <style>
+    .threa {
+
+      padding: 1%;
+      padding-right: 7%;
+      padding-bottom: -1%;
+      /* margin-top: -4%; */
+      font-size: 80%;
+
+
+      box-shadow: 4px 4px 1px lightblue;
+      background: linear-gradient(to top right, rgb(227, 225, 239) 0%, rgb(203, 226, 230) 100%);
+
+    }
+  </style>
+</head>
+
+<body>
+  <h5 style="text-align: center;background-color: #ffff;color:rgb(112, 153, 188);margin-bottom: 2%;">Transitions
+    ({{project_name}})</h5>
+
+  <div class="threa">
+    <p style="font-size: 80%;color: #1e5472;">
+      - cashflow estimation<br>
+      - testing for onerousness<br>
+      - assigning groups
+
+    </p>
+
+  </div>
+
+
+  <div id="booking" class="section">
+    <div class="section-center">
+      <div class="container">
+        <div class="row">
+          <div class="booking-form">
+
+            <form action="#">
+
+              <div class="">
+                <div class="form-btn" style="margin-top: -2%;">
+                  <button class="btn btn-outline-dark" (click)="[CashflowEstimation()]">
+                    Execute
+                    <!-- <span *ngIf="executed">	Executed <i style="color: white" class="fa fa-check" aria-hidden="true"></i></span> -->
+
+
+                  </button>
+                  <!-- <button class="btn" style="margin-top: 14%;margin-left:-24% ;" type="submit">Upload</button> -->
+
+                </div>
+                <div style="font-size: 77%;margin-top: 2%;">
+                  <div class="error" *ngIf="error!=null">
+                    <div class="alert alert-danger" style="font-size: 80%;">{{error.error.detail}}</div>
+                  </div>
+
+                  <i>
+                    <ul>
+                      <li *ngIf="showme" style="color: navy;"><b> Cashflow Estimation:
+
+                          <span *ngIf="done" style="font-size: 50%;">
+                            <span class="spinner-border" role="status" style="height: 10px;width: 10px;">
+                              <span class="sr-only" id="loading" style="height: 10px;width: 10px;"></span>
+                            </span>
+                          </span>
+
+
+                        </b>{{result}}<i style="color: green;font-size: 140%;margin-left: 5px;" [innerHTML]="tick"></i>
+                      </li> <br>
+                      <li *ngIf="showme1"><span style="color:#ff33d3 ;"><b>Test for onerousness :
+
+                            <span *ngIf="done1" style="font-size: 50%;">
+                              <span class="spinner-border" role="status" style="height: 10px;width: 10px;">
+                                <span class="sr-only" id="loading" style="height: 10px;width: 10px;"></span>
+                              </span>
+                            </span>
+
+                          </b>{{result2}}</span><i style="color: green;font-size: 140%;margin-left: 5px;;"
+                          [innerHTML]="tick1"></i></li>
+                      <br>
+                      <li *ngIf="showme2"><span style="color:#1e5472 ;"><b> assigning groups :
+
+                            <span *ngIf="done2" style="font-size: 50%;">
+                              <span class="spinner-border" role="status" style="height: 10px;width: 10px;">
+                                <span class="sr-only" id="loading" style="height: 10px;width: 10px;"></span>
+                              </span>
+                            </span>
+
+                          </b>{{result3}}</span><i style="color: green;font-size: 140%;margin-left: 5px;"
+                          [innerHTML]="tick2"></i></li>
+
+                      <br>
+                      <li *ngIf="showme3"><span style="color:#afc530 ;"><b> Creating Premium received timeline :
+
+                            <span *ngIf="done3" style="font-size: 50%;">
+                              <span class="spinner-border" role="status" style="height: 10px;width: 10px;">
+                                <span class="sr-only" id="loading" style="height: 10px;width: 10px;"></span>
+                              </span>
+                            </span>
+
+                          </b>{{result4}}</span><i style="color: green;font-size: 140%;margin-left: 5px;"
+                          [innerHTML]="tick3"></i></li>
+                      <br>
+                      <li *ngIf="showme4"><span style="color:#18b33a ;"><b> Creating loss component :
+
+                            <span *ngIf="done4" style="font-size: 50%;">
+                              <span class="spinner-border" role="status" style="height: 10px;width: 10px;">
+                                <span class="sr-only" id="loading" style="height: 10px;width: 10px;"></span>
+                              </span>
+                            </span>
+
+                          </b>{{result5}}</span><i style="color: green;font-size: 140%;margin-left: 5px;"
+                          [innerHTML]="tick4"></i>
+                        <i style="color: red;font-size: 140%;margin-left: 5px;" [innerHTML]="cross5"></i>
+                      </li>
+
+                      <br>
+                    </ul>
+                  </i>
+
+                  <div class="d-flex" *ngIf="opts" style="margin-top:-3%">
+                    <button class="btn btn-outline-dark" style="margin-right: 1%; width: 50%;" type="submit"
+                      (click)="toCalculations()">Proceed to calculations</button>
+                    <button class="btn btn-outline-dark" type="submit" style="width: 50%"
+                      (click)="toCashflows()">Cashflow estimation</button>
+                  </div>
+
+
+                </div>
+              </div>
+
+            </form>
+
+
+
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+</body>
+
+
+
+
+
+
+
+<ng-template #content let-modal>
+  <div>
+    <div class="modal-header">
+      <h4 class="modal-title" style="color: grey;font-size: 80%;" id="modal-basic-title">Response</h4>
+      <button type="button" class="btn-close" aria-label="Close" (click)="[modal.dismiss('Cross click')]"></button>
+    </div>
+    <div class="modal-body">
+
+      <p style="color:navy ;font-weight: bold;">ALL CALCULATIONS DONE <i style="color: rgb(20, 105, 20);"
+          class="fa fa-check" aria-hidden="true"></i><i style="color: rgb(20, 105, 20);" class="fa fa-check"
+          aria-hidden="true"></i>
+
+      </p>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-outline-dark" type="submit" (click)="[modal.dismiss('Cross click')]">close</button>
+    </div>
+
+  </div>
+</ng-template>

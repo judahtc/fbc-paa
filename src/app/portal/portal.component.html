@@ -1,0 +1,249 @@
+<head>
+  <style>
+    :-webkit-scrollbar {
+      display: none;
+    }
+  </style>
+
+</head>
+
+
+<head>
+  <title>IFRIS 17</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <!-- <link rel="stylesheet" href="css/style.css"> -->
+</head>
+
+<body style="overflow-x:hidden;overflow-y:hidden">
+
+
+
+
+  <div class="">
+    <div class="mynav">
+      <!-- Navbar -->
+      <nav class="navbar navbar-expand-lg navbar-light mb-2 p-0" style="			box-shadow:  2px 2px 1px lightblue;">
+        <!-- Container wrapper -->
+        <div class="d-flex justify-content-between" style="width: 100%;">
+          <a class="navbar-brand " style="font-weight:bolder;font-size: 100%;color:rgb(127, 180, 220)">
+            <img src="assets/images/FBC-Logo.jpg" style="width: 25px;height:25px;">
+            FBC
+          </a>
+
+
+          <div class="collapse navbar-collapse" id="navbarButtonsExample">
+            <!-- Left links -->
+            <ul class="navbar-nav me-auto mb-0 mb-lg-0">
+              <li class="nav-item">
+
+              </li>
+            </ul>
+            <!-- Left links -->
+
+            <div class="left_links d-flex align-items-center">
+              <i class="fa fa-gear" style="color: rgb(127, 180, 220);margin-right: -18.5%;" aria-hidden="true"></i>
+
+              <a class="nav-link  "
+                style="padding: 2px;width:150px;text-align: center;color:rgb(127, 180, 220);opacity: 0.9;font-weight: 500;"
+                href="/portal/change-pass">
+                config
+              </a>
+              <i class="fa fa-sign-out" style="color:  rgb(127, 180, 220);" aria-hidden="true"></i>
+              <a class="nav-link  "
+                style="padding: 2px;width:30px;text-align: center;color: rgb(127, 180, 220);opacity: 0.9;font-weight: 500;;"
+                href="/login">
+
+                logout
+              </a>
+
+
+
+            </div>
+          </div>
+          <!-- Collapsible wrapper -->
+        </div>
+        <!-- Container wrapper -->
+      </nav>
+
+    </div>
+    <!-- Navbar -->
+    <div class="wrapper d-flex align-items-stretch">
+      <!-- SIDEBAR -->
+      <nav id="sidebar"
+        style="background-color:rgb(127, 180, 220);height: calc(100vh - 42px); margin-top: -0.2%; overflow-y: auto;">
+
+        <div class="custom-menu">
+
+        </div>
+        <div class="p-4 pt-4">
+          <h1><a href="index.html" class="logo">IFRS 17</a></h1>
+          <ul class="list-unstyled components mb-5">
+            <li class="active">
+              <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"
+                (click)="[ShowProjects(),hideCashFlows(),hideRF()]">Projects</a>
+              <ul class="collapse list-unstyled" id="pageSubmenu" *ngIf="projects">
+                <li>
+                  <a routerLink="/portal/create/"><i style="color:rgb(215, 229, 235) ;margin-right: 3px;"
+                      class="fa fa-plus" title="Edit" routerLinkActive="active"></i> Create Projects</a>
+                </li>
+                <li>
+                  <a routerLink="/portal/projects/"><i style="color:rgb(215, 229, 235) ;margin-right: 5px;"
+                      class="fa fa-bars" title="Edit"></i>View Projects</a>
+                </li>
+                <li>
+                  <a routerLink="/portal/addfiles"><i style="color:rgb(215, 229, 235) ;margin-right: 5px;"
+                      class="fa fa-upload" title="Edit"></i>Upload Data <sup *ngIf='upload_files'
+                      style="color: green;font-size: 50%;font-weight: bold;">done</sup></a>
+                </li>
+
+                <li>
+                  <a routerLink="/portal/data-checks"><i style="color:rgb(215, 229, 235) ;margin-right: 5px;"
+                      class="fa fa-check" title="Edit"></i> Data Checks <sup *ngIf='data_checks'
+                      style="color: green;font-size: 50%;font-weight: bold;">done</sup></a>
+                </li>
+
+              </ul>
+
+            </li>
+            <li>
+              <a href="#pageSubmenu1" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"
+                (click)="[showCashFlows(),hideRF(),hideProjects()]">Cashflows</a>
+              <ul class="collapse list-unstyled" id="pageSubmenu1" *ngIf="cash">
+
+                <li>
+                  <a routerLink="/portal/cashflow/"><i style="color:rgb(215, 229, 235) ;margin-right: 3px;"
+                      class="fa fa-money" title="Edit"></i> Cashflow Estimation</a>
+                </li>
+
+                <li><i class="fa-regular fa-vial-virus"></i>
+                  <a routerLink="/portal/onerous/"><i style="color:rgb(215, 229, 235) ;margin-right: 5px;"
+                      class="fa fa-bars" title="Edit"></i>Test Onerousness</a>
+                </li>
+
+                <li>
+                  <a routerLink="/portal/assign_groups"><i style="color:rgb(215, 229, 235) ;margin-right: 5px;"
+                      class="fa fa-group" title="Edit"></i>Assign Groups</a>
+                </li>
+
+                <li>
+                  <a routerLink="/portal/execute-all/"><i style="color:rgb(215, 229, 235) ;margin-right: 3px;"
+                      class="fa fa-play" title="Edit"></i> Execute All <sup *ngIf='cashflow_estimation'
+                      style="color: green;font-size: 50%;font-weight: bold;">done</sup></a>
+                </li>
+
+                <li>
+                  <a routerLink="/portal/calculations"><i style="color:rgb(215, 229, 235) ;margin-right: 5px;"
+                      class="fa fa-calculator"></i>Calculations &nbsp;<sup *ngIf='calculations'
+                      style="color: green;font-size: 50%;font-weight: bold;">done</sup></a>
+                </li>
+
+              </ul>
+            </li>
+            <li>
+
+              <a href="#pageSubmenu2" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"
+                (click)="[hideCashFlows(),showRF(),hideProjects()]">Roll Forward</a>
+              <ul class="collapse list-unstyled" id="pageSubmenu2" *ngIf="rollfoward">
+                <!-- <li>
+                            <a routerLink="/portal/rollfoward_lrc" style="font-size: 60%"><i style="color:rgb(215, 229, 235) ;margin-right: 3px;" class="fa fa-forward"></i> Liability for Remaining Coverage <sup *ngIf='rollforward' style="color: green;font-size: 50%;font-weight: bold;">done</sup></a>
+                        </li>
+                        <li>
+                            <a routerLink="/portal/rollfoward_arc"><i style="color:rgb(215, 229, 235) ;margin-right: 3px;" class="fa fa-forward"></i> Arc <sup *ngIf='rollforward' style="color: green;font-size: 50%;font-weight: bold;">done</sup></a>
+                        </li>
+
+                        <li><i class="fa-regular fa-vial-virus"></i>
+                            <a routerLink="/portal/rollfoward_lic"><i style="color:rgb(215, 229, 235) ;margin-right: 3px;" class="fa fa-forward"></i>lic <sup *ngIf='rollforward' style="color: green;font-size: 50%;font-weight: bold;">done</sup></a>
+                        </li>
+                        <li><i class="fa-regular fa-vial-virus"></i>
+                            <a routerLink="/portal/rollfoward_aric"><i style="color:rgb(215, 229, 235) ;margin-right: 3px;" class="fa fa-forward"></i>Aric <sup *ngIf='rollforward' style="color: green;font-size: 50%;font-weight: bold;">done</sup></a>
+                        </li>
+
+                        <li>
+                          <a routerLink="/portal/rollfoward_lc"><i style="color:rgb(215, 229, 235) ;margin-right: 3px;" class="fa fa-forward"></i>lc <sup *ngIf='rollforward' style="color: green;font-size: 50%;font-weight: bold;">done</sup></a>
+                        </li> -->
+                <li>
+                  <a routerLink="/portal/rollforward-calcs"><i style="color:rgb(215, 229, 235) ;margin-right: 3px;"
+                      class="fa fa-calculator"></i>Calculations<sup *ngIf='rollforward'
+                      style="color: green;font-size: 50%;font-weight: bold;">done</sup></a>
+                </li>
+                <li><i class="fal fa-sigma"></i>
+                  <a routerLink="/portal/results"><i style="color:rgb(215, 229, 235) ;margin-right: 3px;"
+                      class="fa fa-download"></i>Results <sup *ngIf='rollforward'
+                      style="color: green;font-size: 50%;font-weight: bold;">done</sup></a>
+                </li>
+
+
+
+              </ul>
+            </li>
+            <li *ngIf="admin"><a href="#pageSubmenu3" data-toggle="collapse" aria-expanded="false"
+                class="dropdown-toggle">User Management</a>
+
+              <ul class="collapse list-unstyled" id="pageSubmenu3">
+                <li>
+                  <a routerLink="/portal/manage-users"><i style="color:rgb(215, 229, 235) ;margin-right: 3px;"
+                      class="fa fa-edit"></i> manage users</a>
+                </li>
+
+                <li><i class="fa-regular fa-vial-virus"></i>
+                  <a routerLink="/portal/signup"><i style="color:rgb(215, 229, 235) ;margin-right: 3px;"
+                      class="fa fa-plus"></i>add user</a>
+                </li>
+                <li><i class="fa-regular fa-vial-virus"></i>
+                  <a routerLink="/portal/audit"><i style="color:rgb(215, 229, 235) ;margin-right: 3px;"
+                      class="fa fa-download"></i>Audit Trail</a>
+                </li>
+
+
+
+              </ul>
+
+            </li>
+
+          </ul>
+
+          <div class="mb-5">
+
+            <form action="#" class="colorlib-subscribe-form">
+              <div class="form-group d-flex">
+                <div class="icon"><span class=""></span></div>
+
+              </div>
+            </form>
+          </div>
+
+          <div class="footer">
+            <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+              <i style="font-size: 70%;margin-left: -5%;"> Copyright &copy;
+                <script>document.write(new Date().getFullYear());</script> Claxon Business Solutions
+              </i> <i class="" aria-hidden="true"></i>
+              <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+            </p>
+          </div>
+
+        </div>
+      </nav>
+
+      <!-- Page Content  -->
+      <div style="width: 81%;margin-left: 1%; height: 90vh; overflow-y: auto;">
+
+        <div class="">
+
+          <router-outlet></router-outlet>
+
+        </div>
+      </div>
+
+
+      <script src="js/jquery.min.js"></script>
+      <script src="js/popper.js"></script>
+      <script src="js/bootstrap.min.js"></script>
+      <script src="js/main.js"></script>
+    </div>
+  </div>
+</body>

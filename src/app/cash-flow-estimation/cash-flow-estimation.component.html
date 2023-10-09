@@ -1,0 +1,98 @@
+<head>
+
+  <style>
+    :-webkit-scrollbar {
+      display: none;
+    }
+  </style>
+
+</head>
+
+<body class="overflow-hidden">
+
+  <div id="booking" class="section">
+    <div class="section-center">
+      <div class="container">
+        <div class="row">
+          <div class="booking-form">
+            <h5 style="text-align: center;background-color: #ffff;color:rgb(112, 153, 188);margin-bottom: 2%;">CASH FLOW
+              ESTIMATION
+            </h5>
+            <form action="#" style="width: 100%;">
+              <div class="">
+                <div class="form-group ">
+                  <input type="text" id="project_name" class="form-control" value="{{project_name}}" name="projectName"
+                    placeholder="Project Name" readonly />
+                </div>
+              </div>
+
+              <div class="">
+                <div class="form-btn">
+                  <button *ngIf="button" class="btn btn-outline-dark" (click)="[onSubmit(),showDiv()]"><span
+                      *ngIf="execute">Execute</span>
+
+                    <span *ngIf="done" style="color:white">
+                      <span>executing....</span>
+
+                      <span class="spinner-border" role="status"
+                        style="height: 12px;width:12px;align-items: center;margin-left: auto; margin-right: auto;font-size: 60%;">
+                        <span class="sr-only" id="loading"
+                          style="height: 12x;width:12px;margin-left: auto; margin-right: auto;"></span>
+                      </span>
+
+                    </span>
+
+                    <span *ngIf="error!=null" style="color:white">
+                      <b style="color: red;">Error encountered</b>
+
+
+
+                    </span>
+
+                  </button>
+                </div>
+              </div>
+
+
+            </form>
+          </div>
+          <div class="error" *ngIf="error!=null">
+            <div class="alert alert-danger" style="font-size: 80%;">{{error.error.detail}}</div>
+          </div>
+          <div *ngIf="showme" style="overflow-x:auto;width: 100%">
+
+
+            <table class="table table-striped">
+              <thead>
+                <tr style="font-size: 70%;">
+                  <th *ngFor="let keys of key">{{keys}}</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let table of premiums_table" style="font-size: 70%;">
+                  <td *ngFor="let values of key">{{table[values]}}</td>
+                </tr>
+              </tbody>
+            </table>
+
+
+
+          </div>
+
+          <div *ngIf="showme" style="margin-top: 5%;">
+
+            <a style="float: left;" style="background-color:rgb(127, 180, 220)" href="portal/onerous/"
+              class="next round">Next &raquo;</a>
+
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- <button  type="submit" (click)="[onSubmit()]" class="btn btn-outline-dark" name="filesupload" >Upload
+
+	</button> -->
+</body>

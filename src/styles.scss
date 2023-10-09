@@ -1,0 +1,14 @@
+/* You can add global styles to this file, and also import other style files */
+
+/* Importing Bootstrap SCSS file. */
+@import 'bootstrap/scss/bootstrap';
+@import "bootstrap/dist/css/bootstrap.css";
+
+
+.ngx-toastr {
+
+      width: 400px !important;  //  Specify toastr-dialog width only on small devices 
+      // padding: 0%;
+      font-size: 70%;
+  
+    }

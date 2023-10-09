@@ -1,0 +1,56 @@
+ngb-pagination ::ng-deep a {
+    color: dimgrey !important;
+    font-size: 70%;
+    font-weight: bold;
+  }
+  
+  ngb-pagination ::ng-deep .page-item.active .page-link {
+    border-color: dimgrey;
+    background-color: lightgrey;
+  }
+  
+  ngb-pagination ::ng-deep .page-item.active .page-link:focus, .page-link:not(:disabled):not(.disabled):active:focus {
+    box-shadow: 0 0 0 0.1rem dimgrey;
+  }
+  
+  ngb-pagination ::ng-deep .page-link:not(:disabled):not(.disabled):active:focus {
+    box-shadow: 0 0 0 0.1rem dimgrey;
+  }
+
+
+  
+  .threa{
+
+    padding: 1%;
+      
+    padding-bottom: -1%;
+
+    font-size: 80%;
+          font-size: 80%;
+          color: #1e5472;
+    box-shadow:  4px 4px 1px lightblue;
+    background: linear-gradient(to top right, rgb(227, 225, 239) 0%, rgb(203, 226, 230) 100%);
+    
+    }
+
+              .booking-form .form-btn {
+                  margin-bottom: 10px;
+              }
+
+              .booking-form .submit-btn {
+                  background: #184c8f;
+                  border: none;
+                  text-transform: uppercase;
+                  height: 30px;
+                  font-size: 13px;
+                  width: 100%;
+                  color: #fff;
+                  border-radius: 4px;
+                  display: block;
+              }
+
+          tr{
+              line-height: 3px;
+              min-height: 3px;
+              height: 3px;
+              }

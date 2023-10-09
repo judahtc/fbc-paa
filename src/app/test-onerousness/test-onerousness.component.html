@@ -1,0 +1,119 @@
+<body class="overflow-hidden" style="margin-top: -2%;">
+  <div id="booking" class="section">
+    <div class="section-center">
+      <div class="container">
+        <div class="row">
+          <div class="booking-form">
+            <h5 style="text-align: center;background-color: #ffff;color:rgb(112, 153, 188);margin-bottom: 2%">TEST
+              ONEROUSNESS</h5>
+            <form action="#" style="width: 100%;">
+              <div class="">
+                <div class="form-group">
+                  <input class="form-control" type="text" value="{{project_name}}" name="projectName"
+                    placeholder="Project Name" readonly />
+
+                </div>
+              </div>
+
+
+
+              <div class="">
+                <div class="form-btn">
+                  <button *ngIf="button" class="btn btn-outline-dark" (click)="[onSubmit(),showDiv()]"><span
+                      *ngIf="execute">Execute</span>
+
+                    <span *ngIf="done" style="color:white">
+                      <b>executing....</b>
+
+                      <span class="spinner-border" role="status"
+                        style="height: 12px;width:12px;align-items: center;margin-left: auto; margin-right: auto;font-size: 60%;">
+                        <span class="sr-only" id="loading"
+                          style="height: 12x;width:12px;margin-left: auto; margin-right: auto;"></span>
+                      </span>
+
+                    </span>
+
+
+                    <span *ngIf="error!=null" style="color:white">
+                      <b style="color: red;">Error encountered</b>
+
+
+
+                    </span>
+                  </button>
+                </div>
+
+              </div>
+            </form>
+
+            <div class="error" *ngIf="error!=null">
+              <div class="alert alert-danger" style="font-size: 80%;">{{error.error.detail}}</div>
+            </div>
+
+            <div *ngIf="showme" style="overflow-x: auto;width: 100%;">
+
+              <table class="table table-striped">
+                <thead>
+                  <tr style="font-size: 70%;">
+                    <th *ngFor="let keys of key">{{keys}}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let tables of table" style="font-size: 70%;">
+                    <td *ngFor="let values of key">{{tables[values]}}</td>
+                  </tr>
+                </tbody>
+              </table>
+
+
+            </div>
+
+
+
+
+            <div *ngIf="showme">
+              <b style="color: navy;text-decoration: underline;font-size: 90%;">Summaries</b>
+              <table class="table table-striped" style="font-size: 60%;width: 50%;">
+                <thead>
+                  <tr>
+                    <th>
+                      Profitable
+                    </th>
+                    <th>
+                      Onerous
+                    </th>
+
+                  </tr>
+
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>{{results_profitable}}</td>
+                    <td>{{results_onerous}}</td>
+
+                  </tr>
+
+                </tbody>
+              </table>
+              <a style="background-color:rgb(127, 180, 220);float: left;margin-right: 1%; " href="portal/cashflow/"
+                class="previous round">&laquo; Previous</a>
+
+              <a style="background-color:rgb(127, 180, 220);" href="portal/assign_groups/" class="next round">Next
+                &raquo;</a>
+            </div>
+
+
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+</body>

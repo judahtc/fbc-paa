@@ -1,0 +1,94 @@
+
+<body >
+<div class="frame" style="margin-top:-20% ;" >
+	<div class="center" >
+		<div class="title">
+			<h1>browse files to upload</h1>
+		</div>
+
+		<div class="dropzone">
+			<form [formGroup]="form" (ngSubmit)="onSubmit()" action="#"> 
+			<!-- <img src="http://100dayscss.com/codepen/upload.svg" class="upload-icon" /> -->			
+			<input name="files" formControlName="files" type="file" class="" (change)="[ReadExcel($event),open(content)]" multiple ngModel/>
+			<!-- <button class="btn" style="margin-top: 14%;margin-left:-24% ;" type="submit">Upload</button> -->
+				</form>
+		</div>
+	</div>	
+</div>
+</body>
+<ng-template #content  let-modal>
+	<div class="modal-header">
+	  <h4 class="modal-title" style="color: grey" id="modal-basic-title">Selected Files</h4>
+	  <button type="button" class="btn-close" aria-label="Close" (click)="[reloadme(),modal.dismiss('Cross click')]"></button>
+	</div>
+	<div class="modal-body">
+	  
+	  <table class="table table-striped">
+		<thead>
+		<tr>
+			<th style="color: grey;">File Name</th>
+			<th style="color: grey;">File Size</th>
+			<th style="color: grey;">Last Updated</th>
+		</tr>
+		</thead>
+		<tbody>
+			<tr *ngFor="let name of name">
+				<td>{{name.name}}</td>
+				<td>{{(name.size/1048576).toFixed(3)}}MB</td>
+				<td>{{name.lastModifiedDate}}</td>
+			</tr>
+
+		</tbody>
+	  </table>
+  	</div>
+
+  <div class="modal-footer">
+	
+	<button *ngIf="notClicked" type="submit" (click)="[onSubmit()]" class="btn btn-outline-dark" name="filesupload" >Upload
+
+	</button>
+
+	<button *ngIf="clicked" type="submit" (click)="[onSubmit()]" class="btn btn-outline-dark" name="filesupload" >Uploading
+
+		<span  style="font-size: 60%;color:white;margin-top: 12%;">
+            <span class="spinner-border" role="status" style="height: 13px;width:13px;">
+              <span class="sr-only" id="loading" style="height: 13px;width:13px"></span>
+            </span>
+        </span>
+	</button>
+
+	<button *ngIf="dataChecks" type="submit" (click)="[data_checks(),modal.dismiss('Cross click')]" class="btn btn-outline-dark" name="filesupload" >Data Checks
+
+	</button>
+
+  </div>
+  </ng-template>
+  
+  <!-- RESPONSE MODAL -->
+
+  <ng-template #content1 let-modal>
+	<div class="modal-header">
+
+		
+
+
+	  <button type="button" class="btn-close" aria-label="Close" (click)="[reloadme(),modal.dismiss('Cross click')]"></button>
+	</div>
+	<div class="modal-body">
+	<b *ngIf="done">
+	   files uploading ...          
+	   <span  style="font-size: 60%;color:#184c8f;" >
+		<span class="spinner-border" role="status" style="height: 15px;width:15px">
+		  <span class="sr-only" id="loading" style="height: 15px;width:15px"></span>
+		</span>
+	</span>
+	</b>
+	<h6 *ngIf="message" class="text-center" style="color: green;">{{results.response}}</h6>
+
+  	</div>
+
+  <div class="modal-footer">
+	
+	<button type="submit" (click)="[modal.dismiss('Cross click'),openUploadLink()]" class="btn btn-outline-dark" name="filesupload" >Close</button>
+  </div>
+  </ng-template>

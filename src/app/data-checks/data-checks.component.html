@@ -1,0 +1,50 @@
+<div style="margin: auto;justify-content:center;color: rgb(0, 96, 128);font-weight: 100;">Data Checks</div>
+<hr>
+
+<div style="overflow-x:auto;width: 100%;margin-top: -3%;">
+  <table class="table table-striped mt-4" style="font-size: 90%;">
+    <thead>
+      <tr style="color: rgb(0, 96, 128);font-size: 80%;font-weight: 200;">
+        <th *ngFor="let keys of key">{{keys}}</th>
+
+      </tr>
+
+
+    </thead>
+
+    <tr *ngIf="computed">
+      <td></td>
+      <td><span style="font-size: 60%;color:navy;text-align: center;margin-top: 12%;">
+          <span class="spinner-border" role="status" style="height: 10px;width:10px;text-align: center;">
+            <span class="sr-only" id="loading" style="height: 10px;width:10px"></span>
+          </span>
+        </span></td>
+      <td><span style="font-size: 60%;color:navy;text-align: center;margin-top: 12%;">
+          <span class="spinner-border" role="status" style="height: 10px;width:10px;text-align: center;">
+            <span class="sr-only" id="loading" style="height: 10px;width:10px"></span>
+          </span>
+
+        </span> </td>
+      <td><span style="font-size: 60%;color:navy;text-align: center;margin-top: 12%;">
+          <span class="spinner-border" role="status" style="height: 10px;width:10px;text-align: center;">
+            <span class="sr-only" id="loading" style="height: 10px;width:10px"></span>
+          </span>
+        </span></td>
+
+      <td><span style="font-size: 60%;color:navy;text-align: center;margin-top: 12%;">
+          <span class="spinner-border" role="status" style="height: 10px;width:10px;text-align: center;">
+            <span class="sr-only" id="loading" style="height: 10px;width:10px"></span>
+          </span>
+        </span></td>
+
+    </tr>
+
+
+    <tbody>
+      <tr *ngFor="let table of result" style="font-size: 70%;">
+        <td *ngFor="let values of key">{{table[values]}}</td>
+      </tr>
+    </tbody>
+
+  </table>
+</div>

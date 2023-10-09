@@ -1,0 +1,507 @@
+<style>
+  .two {
+
+    padding: 3%;
+
+    margin-top: -4%;
+    border: 1px solid rgb(19, 130, 234);
+    box-shadow: 7px 7px 4px lightblue;
+
+  }
+</style>
+
+<div class="booking-form">
+  <h5 style="text-align: center;background-color: #ffff;color:rgb(112, 153, 188);margin-bottom: 2%;">USER MANAGEMENT
+  </h5>
+  <form style="width: 100%;" method="post">
+    <!-- [formGroup]="form1" -->
+    <div class="">
+      <div class="form-group">
+        <input class="form-control" type="email" value="" id='emails' name="emails" placeholder="Email Address" />
+
+      </div>
+    </div>
+
+    <div class="">
+      <div class="form-btn">
+        <button class="btn btn-outline-dark" (click)="get_user_by_email()">Search</button>
+      </div>
+    </div>
+
+
+  </form>
+</div>
+<div class="user" *ngIf="userfound">
+
+  <h6 style="margin-left: 2%;color: navy;">Personal Details</h6><br><br>
+  <div class="both">
+    <div class="two">
+      <table style="color: navy">
+        <tr>
+          <td>First Name:</td>
+          <td>{{user.first_name}}</td>
+        </tr><br>
+        <tr>
+          <td>Last Name:</td>
+          <td>{{user.last_name}}</td>
+        </tr><br>
+        <tr>
+          <td>Phone Number:</td>
+          <td>{{user.phone_number}}</td>
+        </tr><br>
+        <tr>
+          <td>Email Adress:</td>
+          <td>{{user.email}}</td>
+        </tr><br>
+        <tr>
+          <td>Address:</td>
+          <td>{{user.work_address}}</td>
+        </tr><br>
+      </table>
+    </div>
+
+  </div>
+  <br>
+
+  <a (click)="open(edituser)"
+    style=" padding: 1%;background-color: aquamarine;padding-left: 5%;padding-right: 5%;">EDIT</a> <a
+    *ngIf="is_admin!==true" (click)="makeAdmin()"
+    style=" padding: 1%;background-color: rgb(16, 20, 82);padding-left: 5%;padding-right: 5%;margin-left: 2.7%;">MAKE
+    ADMIN</a> <a *ngIf="is_admin" (click)="removeAdmin()"
+    style=" padding: 1%;background-color: rgb(16, 20, 82);padding-left: 5%;padding-right: 5%;margin-left: 2.7%;">REMOVE
+    ADMIN</a><a (click)="open1(confirmdelete)" routerLink="/portal/manage-users"
+    style="padding: 1%;background-color: rgb(180, 6, 41);padding-left: 5%;padding-right: 5%;color: aliceblue;margin-left: 2%;">DELETE</a>
+  <hr>
+
+</div>
+
+<div class="user2" *ngIf="usernotfound">
+  <i style="color: red;font-size:80%;margin-top: -13%;">User not found!!!</i>
+</div>
+
+
+
+<head>
+
+  <style>
+    :-webkit-scrollbar {
+      display: none;
+    }
+  </style>
+
+</head>
+
+<body class="overflow-hidden">
+
+  <div id="booking" class="section">
+    <div class="section-center">
+      <div class="container">
+        <div class="row">
+
+
+          <div style="overflow-x:auto;width: 100%" *ngIf="table">
+
+
+            <table class="table table-striped">
+              <thead>
+                <tr style="font-size: 70%;;">
+                  <th>email address</th>
+                  <th>first_name</th>
+                  <th>last_name</th>
+                  <th>physical address</th>
+                  <th>phone number</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let i=index;let table of users | slice: (page-1) * pageSize : page * pageSize"
+                  style="font-size: 70%;">
+                  <td><a style="color: navy;" (click)="get_user_by_email1(table.email)">{{table.email}}</a></td>
+                  <td>{{table.first_name}}</td>
+                  <td>{{table.last_name}}</td>
+                  <td>{{table.work_address}}</td>
+                  <td>{{table.phone_number}}</td>
+                </tr>
+              </tbody>
+            </table>
+            <ngb-pagination [(page)]="page" [pageSize]="pageSize" [collectionSize]="users.length"></ngb-pagination>
+
+
+          </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <br>
+
+
+
+
+</body>
+
+
+<ng-template #edituser let-modal>
+
+
+  <div class="form-v10-content">
+    <form class="form-detail" action="#" [formGroup]="form" method="post" id="myform">
+
+      <div class="form-left">
+        <h2>General Infomation</h2>
+
+
+        <div class="form-row form-row">
+          <input type="text" name="email" value="{{user.email}}" formControlName="email" id="email" class="input-text"
+            required pattern="[^@]+@[^@]+.[a-zA-Z]{2,6}" placeholder="Email" [ngModel]="email">
+        </div>
+
+
+
+
+        <div class="form-row form-row">
+          <input type="text" name="first_name" id="first_name" class="input-text" value="{{user.first_name}}"
+            formControlName="first_name" required [ngModel]="first_name">
+        </div>
+
+
+
+
+
+
+        <div class="form-row form-row">
+          <input type="text" name="last_name" id="last_name" class="input-text" placeholder="Last Name"
+            value="{{user.last_name}}" formControlName="last_name" required [ngModel]="last_name">
+        </div>
+
+
+
+
+      </div>
+      <div class="form-right">
+        <h2>Contact Details</h2>
+
+        <div class="form-row form-row">
+
+          <input type="text" name="phone_number" id="phone_number" class="phone" value="{{user.phone_number}}"
+            formControlName="phone_number" required [ngModel]="phone_number">
+          <!-- formControlName="phone_number" -->
+        </div>
+
+
+        <div class="form-row">
+          <input type="text" name="address" class="street" value="{{user.work_address}}" id="street"
+            formControlName="work_address" required [ngModel]="work_address">
+          <!-- formControlName="address" -->
+        </div>
+
+        <div class="form-checkbox">
+          <label class="container">
+            <p>Is admin? </p>
+            <input type="checkbox" name="isadmin" formControlName="isadmin" value="true">
+
+            <span class="checkmark"></span>
+          </label>
+        </div>
+
+        <div class="form-row-last " style="margin-top: 1%;">
+          <input type="submit" (click)="[editUser(),open3(doneupdate),modal.dismiss('Cross click')]" name="update"
+            class="register" value="Update">
+        </div>
+
+      </div>
+    </form>
+  </div>
+
+</ng-template>
+
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" style="color: grey" id="modal-basic-title">Response</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="[modal.dismiss('Cross click')]"></button>
+  </div>
+  <div class="modal-body">
+    <i>user successfully updated</i>
+    <p style="color:navy ;"></p>
+  </div>
+  <div class="modal-footer">
+    <button class="btn" type="submit" (click)="[modal.dismiss('Cross click')]">close</button>
+  </div>
+
+
+</ng-template>
+
+<ng-template #confirmdelete let-modal>
+  <style>
+    .modal-confirm {
+      color: #636363;
+      width: 400px;
+    }
+
+    .modal-confirm .modal-content {
+      padding: 20px;
+      border-radius: 5px;
+      border: none;
+      text-align: center;
+      font-size: 14px;
+    }
+
+    .modal-confirm .modal-header {
+      border-bottom: none;
+      position: relative;
+    }
+
+    .modal-confirm h4 {
+      text-align: center;
+      font-size: 26px;
+      margin: 30px 0 -10px;
+    }
+
+    .modal-confirm .close {
+      position: absolute;
+      top: -5px;
+      right: -2px;
+    }
+
+    .modal-confirm .modal-body {
+      color: #999;
+    }
+
+    .modal-confirm .modal-footer {
+      border: none;
+      text-align: center;
+      border-radius: 5px;
+      font-size: 13px;
+      padding: 10px 15px 25px;
+    }
+
+    .modal-confirm .modal-footer a {
+      color: #999;
+    }
+
+    .modal-confirm .icon-box {
+      width: 80px;
+      height: 80px;
+      margin: 0 auto;
+      border-radius: 50%;
+      z-index: 9;
+      text-align: center;
+      border: 3px solid #f15e5e;
+    }
+
+    .modal-confirm .icon-box i {
+      color: #f15e5e;
+      font-size: 46px;
+      display: inline-block;
+      margin-top: 13px;
+    }
+
+    .modal-confirm .btn,
+    .modal-confirm .btn:active {
+      color: #fff;
+      border-radius: 4px;
+      background: #60c7c1;
+      text-decoration: none;
+      transition: all 0.4s;
+      line-height: normal;
+      min-width: 120px;
+      border: none;
+      min-height: 40px;
+      border-radius: 3px;
+      margin: 0 5px;
+    }
+
+    .modal-confirm .btn-secondary {
+      background: #c1c1c1;
+    }
+
+    .modal-confirm .btn-secondary:hover,
+    .modal-confirm .btn-secondary:focus {
+      background: #a8a8a8;
+    }
+
+    .modal-confirm .btn-danger {
+      background: #f15e5e;
+    }
+
+    .modal-confirm .btn-danger:hover,
+    .modal-confirm .btn-danger:focus {
+      background: #ee3535;
+    }
+  </style>
+
+  <!-- <div class="text-center">
+
+		<a href="#myModal" class="trigger-btn" data-toggle="modal">Click to Open Confirm Modal</a>
+	</div> -->
+
+  <!-- Modal HTML -->
+
+  <div class="modal-dialog modal-confirm">
+    <div class="modal-content">
+      <div class="modal-header flex-column">
+        <div class="icon-box">
+          <i class="material-icons" (click)="modal.dismiss('Cross click')">&#xE5CD;</i>
+        </div>
+        <h4 class="modal-title w-100">Are you sure?</h4>
+        <button type="button" class=" close" data-dismiss="modal" aria-hidden="true"
+          (click)="modal.dismiss('Cross click')">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p>Do you really want to delete this user? This process cannot be undone.</p>
+      </div>
+      <div class="modal-footer justify-content-center">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal"
+          (click)="[modal.dismiss('Cross click')]">Cancel</button>
+        <button type="button" class="btn btn-danger"
+          (click)="[delete_user(),open2(donedelete),modal.dismiss('Cross click')]">Delete</button>
+      </div>
+    </div>
+  </div>
+
+</ng-template>
+
+<ng-template #donedelete let-modal>
+  <style>
+    body {
+      font-family: 'Varela Round', sans-serif;
+    }
+
+    .modal-confirms {
+      color: #636363;
+      width: 325px;
+      font-size: 14px;
+    }
+
+    .modal-confirms .modal-content {
+      padding: 20px;
+      border-radius: 5px;
+      border: none;
+    }
+
+    .modal-confirms .modal-header {
+      border-bottom: none;
+      position: relative;
+    }
+
+    .modal-confirms h4 {
+      text-align: center;
+      font-size: 26px;
+      margin: 30px 0 -15px;
+    }
+
+    .modal-confirms .form-control,
+    .modal-confirm .btn {
+      min-height: 40px;
+      border-radius: 3px;
+    }
+
+    .modal-confirms .close {
+      position: absolute;
+      top: -5px;
+      right: -5px;
+    }
+
+    .modal-confirms .modal-footer {
+      border: none;
+      text-align: center;
+      border-radius: 5px;
+      font-size: 13px;
+    }
+
+    .modal-confirms .icon-box {
+      color: #fff;
+      position: absolute;
+      margin: 0 auto;
+      left: 0;
+      right: 0;
+      top: -70px;
+      width: 95px;
+      height: 95px;
+      border-radius: 50%;
+      z-index: 9;
+      background: #82ce34;
+      padding: 15px;
+      text-align: center;
+      box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
+    }
+
+    .modal-confirms .icon-box i {
+      font-size: 58px;
+      position: relative;
+      top: 3px;
+    }
+
+    .modal-confirms .modal-dialog {
+      margin-top: 80px;
+    }
+
+    .modal-confirms .btn {
+      color: #fff;
+      border-radius: 4px;
+      background: #82ce34;
+      text-decoration: none;
+      transition: all 0.4s;
+      line-height: normal;
+      border: none;
+    }
+
+    .modal-confirms .btn:hover,
+    .modal-confirm .btn:focus {
+      background: #6fb32b;
+      outline: none;
+    }
+
+    .trigger-btn {
+      display: inline-block;
+      margin: 100px auto;
+    }
+  </style>
+
+
+
+  <!-- Modal HTML -->
+
+  <div class="modal-dialog modal-confirms">
+    <div class="modal-content" style="margin-top: 28%;">
+      <div class="modal-header">
+        <div class="icon-box">
+          <i class="material-icons">&#xE876;</i>
+        </div>
+        <h4 class="modal-title w-100">Done!</h4>
+      </div>
+      <div class="modal-body">
+        <p class="text-center">User successfully Deleted</p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-success btn-block" style="width: 100%;" data-dismiss="modal"
+          (click)="[modal.dismiss('Cross click'),reloadme()]">OK</button>
+      </div>
+    </div>
+
+  </div>
+
+</ng-template>
+
+<ng-template #doneupdate let-modal>
+  <div class="modal-dialog modal-confirms">
+    <div class="modal-content" style="margin-top: 28%;">
+      <div class="modal-header">
+        <div class="icon-box">
+          <i class="material-icons">&#xE876;</i>
+        </div>
+        <h4 class="modal-title w-100">Done!</h4>
+      </div>
+      <div class="modal-body">
+        <p class="text-center">User successfully updated</p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-success btn-block" style="width: 100%;" data-dismiss="modal"
+          (click)="[modal.dismiss('Cross click'),reloadme()]">OK</button>
+      </div>
+    </div>
+
+  </div>
+</ng-template>

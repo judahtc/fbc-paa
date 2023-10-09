@@ -1,0 +1,54 @@
+
+
+<body >
+
+    
+
+
+    <span style="color:rgb(215, 229, 235);font-weight: 700;font-size: 80%;">
+
+        Arc </span>
+
+    <div class="threa">
+
+        <table class="table table-striped">
+            <thead>
+                <tr><th>Groups</th><th></th></tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let lrc_group of lrcgroups | slice: (page-1) * pageSize : page * pageSize">
+                    
+                    <td>{{lrc_group}}</td> <td><i class="fa fa-book"></i></td>
+                </tr>
+            </tbody>
+    
+        </table>
+    
+        <ngb-pagination
+        [(page)]="page"
+        [pageSize]="pageSize"
+        [collectionSize]="urebu" *ngIf="semantic==null"></ngb-pagination>
+    
+        <button type="submit" (click)="[calculateAll_lrc()]" class="btn btn-outline-dark" name="filesupload" style="margin-right: 2%;" *ngIf="semantic==null">Execute All
+    
+            <span *ngIf="done1" style="font-size: 60%;color:#184c8f;">
+                <span class="spinner-border" role="status" style="height: 15px;width:15px">
+                  <span class="sr-only" id="loading" style="height: 15px;width:15px"></span>
+                </span>
+            </span>
+        
+        </button>
+    
+    
+    
+    
+    </div>
+    
+    
+    <div class="error" *ngIf="semantic!=null">
+        <div class="alert alert-danger" style="font-size: 80%;margin-top: 1%;" >{{outing}} </div>
+    </div>
+    
+    </body>
+    
+    

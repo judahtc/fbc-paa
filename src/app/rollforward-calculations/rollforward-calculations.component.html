@@ -1,0 +1,18 @@
+
+<style>
+    a.selected {
+  background-color: rgb(214, 225, 234);
+}
+</style>
+<div style="font-size: 80%;" class="d-flex justify-content-between align-items-center">
+<a routerLink="/portal/rollforward-calcs"  (click)="[activate_lrc(),onLinkClick()]" [class.selected]="isLinkSelected"><i style="color:rgb(215, 229, 235) ;margin-right: 5px;margin-left: -10px;" class="fa fa-calculator"></i>Liability for Remaining Coverage </a>
+<a routerLink="/portal/rollforward-calcs" (click)="[activate_lc(),onLinkClick1()]" [class.selected]="isLinkSelected1"><i style="color:rgb(215, 229, 235) ;margin-right: 5px;" class="fa fa-calculator"></i>Loss Component </a>
+<a routerLink="/portal/rollforward-calcs" (click)="[activate_lic(),onLinkClick2()]" [class.selected]="isLinkSelected2"><i style="color:rgb(215, 229, 235) ;margin-right: 5px;" class="fa fa-calculator"></i>Liability for Incurred Claims </a>
+<a routerLink="/portal/rollforward-calcs" (click)="[activate_arc(),onLinkClick3()]" [class.selected]="isLinkSelected3"><i style="color:rgb(215, 229, 235) ;margin-right: 5px;" class="fa fa-calculator"></i>Asset for Remaining Coverage </a>
+<a routerLink="/portal/rollforward-calcs" (click)="[activate_aric(),onLinkClick4()]" [class.selected]="isLinkSelected4"><i style="color:rgb(215, 229, 235) ;margin-right: 5px;" class="fa fa-calculator"></i>Amounts Recoverable on Incurred Claims </a>
+</div>
+<app-rollfoward-lrc *ngIf="lrc"></app-rollfoward-lrc>
+<app-rollforward-lc *ngIf="lc"></app-rollforward-lc>
+<app-rollfoward-lic *ngIf="lic"></app-rollfoward-lic>
+<app-rollfoward-arc *ngIf="arc"></app-rollfoward-arc>
+<app-rollfoward-aric *ngIf="aric"></app-rollfoward-aric>

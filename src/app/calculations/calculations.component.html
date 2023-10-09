@@ -1,0 +1,443 @@
+<head>
+
+  <style>
+    .threa {
+
+      padding: 1%;
+      padding-right: 7%;
+      padding-bottom: -1%;
+      /* margin-top: -4%; */
+      font-size: 80%;
+      margin-top: 2%;
+      box-shadow: 4px 4px 1px lightblue;
+      background: linear-gradient(to top right, rgb(227, 225, 239) 0%, rgb(203, 226, 230) 100%);
+
+    }
+  </style>
+</head>
+
+<body>
+  <h5 style="text-align: center;background-color: #ffff;color:rgb(112, 153, 188);margin-bottom: 2%;">Calculations
+    ({{project_name}})</h5>
+
+  <!-- <div class="threa">
+	<p style="font-size: 80%;color: #1e5472;">
+- accounting for expected premiums<br>
+- accounting for expected reinsurance premiums<br>
+- accounting for insurance revenue<br>
+- accounting for reinsurance expense<br>
+- accounting for insurance commission<br>
+- accounting for reinsurance commission<br>
+- accounting for premiums received<br>
+- accounting for reinsurance premiums paid<br>
+- accounting for loss component<br>
+</p>
+
+</div> -->
+  <div class="d-flex justify-content-between align-items-center">
+    <div class="card" style="width: 30%;border: 1px solid #EAEDED;">
+      <div class="card-header d-flex justify-content-between align-items-center" style="font-size: 80%;">
+        <div>
+          <i class="fa fa-gear" style="color: #425f86;" aria-hidden="true"></i>
+          Step 1
+        </div>
+        <div>
+
+
+          <span *ngIf="done" style="font-size: 50%;">
+            <span class="spinner-border" role="status" style="height: 10px;width: 10px;color: #425f86;">
+              <span class="sr-only" id="loading" style="height: 10px;width: 10px;color: #425f86;"></span>
+            </span>
+          </span>
+
+
+          {{result}}
+          <i style="color: green;font-size: 140%;margin-left: 5px;" [innerHTML]="tick"></i>
+        </div>
+
+      </div>
+      <div class="card-body">
+        <blockquote class="blockquote mb-0">
+          <p style="font-size: 60%;color:rgb(112, 153, 188)">accounting for expected premiums</p>
+        </blockquote>
+      </div>
+    </div>
+
+
+    <!-- STEP 2 -->
+    <div class="card" style="width: 30%;border: 1px solid #EAEDED;">
+      <div class="card-header d-flex justify-content-between align-items-center" style="font-size: 80%;">
+        <div>
+          <i class="fa fa-gear" style="color: #425f86;" aria-hidden="true"></i>
+          Step 2
+        </div>
+        <div> <span *ngIf="doneb" style="font-size: 50%;">
+            <span class="spinner-border" role="status" style="height: 10px;width: 10px;color: #425f86;">
+              <span class="sr-only" id="loading" style="height: 10px;width: 10px;"></span>
+            </span>
+          </span>
+
+
+          {{resultb}}<i style="color: green;font-size: 140%;margin-left: 5px;" [innerHTML]="tickb"></i></div>
+      </div>
+      <div class="card-body">
+        <blockquote class="blockquote mb-0">
+          <p style="font-size: 60%;color:rgb(112, 153, 188)">... for expected reinsurance premiums</p>
+        </blockquote>
+      </div>
+    </div>
+
+    <!-- STEP 3 -->
+    <div class="card" style="width: 30%;border: 1px solid #EAEDED;">
+      <div class="card-header d-flex justify-content-between align-items-center" style="font-size: 80%;">
+        <div>
+          <i class="fa fa-gear" style="color: #425f86;" aria-hidden="true"></i>
+          Step 3
+        </div>
+        <div>
+          <!-- spinner 3 -->
+
+          <span *ngIf="done1" style="font-size: 50%;">
+            <span class="spinner-border" role="status" style="height: 10px;width: 10px;color: #425f86;">
+              <span class="sr-only" id="loading" style="height: 10px;width: 10px;"></span>
+            </span>
+          </span>
+
+          <span>{{result2}}</span><i style="color: green;font-size: 140%;margin-left: 5px;;" [innerHTML]="tick1"></i>
+        </div>
+      </div>
+      <div class="card-body">
+        <blockquote class="blockquote mb-0">
+          <p style="font-size: 60%;color:rgb(112, 153, 188)">accounting for insurance revenue</p>
+        </blockquote>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECOND ROW -->
+  <div class="d-flex justify-content-between align-items-center mt-3">
+    <div class="card" style="width: 30%;border: 1px solid #EAEDED;">
+      <div class="card-header d-flex justify-content-between align-items-center" style="font-size: 80%;">
+        <!-- STEP 4 -->
+        <div>
+          <i class="fa fa-gear" style="color: #425f86;" aria-hidden="true"></i>
+          Step 4
+        </div>
+
+        <div>
+
+          <!--  -->
+          <span *ngIf="done1b" style="font-size: 50%;">
+            <span class="spinner-border" role="status" style="height: 10px;width: 10px;color: #425f86;">
+              <span class="sr-only" id="loading" style="height: 10px;width: 10px;"></span>
+            </span>
+          </span>
+
+          <span>{{result2b}}</span><i style="color: green;font-size: 140%;margin-left: 5px;;" [innerHTML]="tick1b"></i>
+        </div>
+      </div>
+      <div class="card-body d-flex justify-content-between align-items-center">
+        <blockquote class="blockquote mb-0">
+          <p style="font-size: 60%;color:rgb(112, 153, 188)">accounting for reinsurance expense</p>
+        </blockquote>
+      </div>
+    </div>
+    <div class="card" style="width: 30%;border: 1px solid #EAEDED;">
+      <div class="card-header d-flex justify-content-between align-items-center" style="font-size: 80%;">
+
+        <!-- STEP 5 -->
+        <div>
+          <i class="fa fa-gear" style="color: #425f86;" aria-hidden="true"></i>
+
+          Step 5
+        </div>
+        <div>
+          <span *ngIf="done2" style="font-size: 50%;">
+            <span class="spinner-border" role="status" style="height: 10px;width: 10px;color: #425f86;">
+              <span class="sr-only" id="loading" style="height: 10px;width: 10px;"></span>
+            </span>
+          </span>
+
+          <span>{{result3}}</span><i style="color: green;font-size: 140%;margin-left: 5px;" [innerHTML]="tick2"></i>
+        </div>
+      </div>
+      <div class="card-body ">
+        <blockquote class="blockquote mb-0">
+          <p style="font-size: 60%;color:rgb(112, 153, 188)">accounting for insurance commission</p>
+        </blockquote>
+      </div>
+    </div>
+
+    <!-- STEP 6 -->
+    <div class="card" style="width: 30%;border: 1px solid #EAEDED;">
+      <div class="card-header d-flex justify-content-between align-items-center" style="font-size: 80%;">
+        <div>
+          <i class="fa fa-gear" style="color: #425f86;" aria-hidden="true"></i>
+
+          Step 6
+        </div>
+
+        <div>
+          <span *ngIf="done2b" style="font-size: 50%;">
+            <span class="spinner-border" role="status" style="height: 10px;width: 10px;color: #425f86;">
+              <span class="sr-only" id="loading" style="height: 10px;width: 10px;"></span>
+            </span>
+          </span>
+
+          <span>{{result3b}}</span><i style="color: green;font-size: 140%;margin-left: 5px;" [innerHTML]="tick2b"></i>
+        </div>
+      </div>
+      <div class="card-body">
+        <blockquote class="blockquote mb-0">
+          <p style="font-size: 60%;color:rgb(112, 153, 188)">accounting for reinsurance commission</p>
+        </blockquote>
+      </div>
+    </div>
+  </div>
+  <!-- THIRD ROW -->
+  <div class="d-flex justify-content-between align-items-center mt-3">
+    <div class="card" style="width: 30%;border: 1px solid #EAEDED;">
+      <div class="card-header d-flex justify-content-between align-items-center" style="font-size: 80%;">
+        <div>
+          <i class="fa fa-gear" style="color: #425f86;" aria-hidden="true"></i>
+
+          Step 7
+        </div>
+        <div>
+          <span *ngIf="done3" style="font-size: 50%;">
+            <span class="spinner-border" role="status" style="height: 10px;width: 10px;color: #425f86;">
+              <span class="sr-only" id="loading" style="height: 10px;width: 10px;"></span>
+            </span>
+          </span>
+
+          <span>{{result4}}</span><i style="color: green;font-size: 140%;margin-left: 5px;" [innerHTML]="tick3"></i>
+        </div>
+      </div>
+      <div class="card-body">
+        <blockquote class="blockquote mb-0">
+          <p style="font-size: 60%;color:rgb(112, 153, 188)">accounting for premiums received</p>
+        </blockquote>
+      </div>
+    </div>
+    <div class="card" style="width: 30%;border: 1px solid #EAEDED;">
+      <div class="card-header d-flex justify-content-between align-items-center" style="font-size: 80%;">
+        <div>
+          <i class="fa fa-gear" style="color: #425f86;" aria-hidden="true"></i>
+
+          Step 8
+        </div>
+        <div> <span *ngIf="done3b" style="font-size: 50%;">
+            <span class="spinner-border" role="status" style="height: 10px;width: 10px;color: #425f86;">
+              <span class="sr-only" id="loading" style="height: 10px;width: 10px;"></span>
+            </span>
+          </span>
+
+          <span>{{result4b}}</span><i style="color: green;font-size: 140%;margin-left: 5px;" [innerHTML]="tick3b"></i>
+        </div>
+      </div>
+      <div class="card-body">
+        <blockquote class="blockquote mb-0">
+          <p style="font-size: 60%;color:rgb(112, 153, 188)">... for reinsurance premiums paid</p>
+        </blockquote>
+      </div>
+    </div>
+    <div class="card" style="width: 30%;border: 1px solid #EAEDED;">
+      <div class="card-header d-flex justify-content-between align-items-center" style="font-size: 80%;">
+        <div>
+          <i class="fa fa-gear" style="color: #425f86;" aria-hidden="true"></i>
+
+          Step 9
+        </div>
+        <div>
+          <span *ngIf="donelossComponent" style="font-size: 50%;">
+            <span class="spinner-border" role="status" style="height: 10px;width: 10px;color: #425f86;">
+              <span class="sr-only" id="loading" style="height: 10px;width: 10px;"></span>
+            </span>
+          </span>
+
+          <span>{{result5}}</span><i style="color: green;font-size: 140%;margin-left: 5px;" [innerHTML]="tick4"></i>
+          <i style="color: red;font-size: 140%;margin-left: 5px;" [innerHTML]="cross5"></i>
+        </div>
+      </div>
+      <div class="card-body">
+        <blockquote class="blockquote mb-0">
+          <p style="font-size: 60%;color:rgb(112, 153, 188)">accounting for loss component</p>
+        </blockquote>
+      </div>
+    </div>
+  </div>
+
+  <div id="booking" class="section">
+    <div class="section-center" style="margin-top: 10px;">
+      <div class="container">
+        <div class="row">
+          <div class="booking-form">
+
+            <form action="#">
+
+              <div class="">
+                <div class="form-btn">
+
+                  <div style="font-size: 77%;">
+                    <div class="error" *ngIf="error!=null">
+                      <div class="alert alert-danger" style="font-size: 80%;">{{error.error.detail}}</div>
+                    </div>
+                    <button (click)="[expected_premiums(),get_id(content)]" type="submit" class="btn btn-outline-dark"
+                      style="width: 30%;margin-left:-2%;" name="filesupload">
+                      <span *ngIf="execute"> Execute</span>
+                      <span *ngIf="executed"> Executed <i style="color: white" class="fa fa-check"
+                          aria-hidden="true"></i></span>
+
+                    </button>
+                    <!-- INITIAL CODE  -->
+                    <!-- <i><ul>
+									<li *ngIf="showme" style="color: navy;"><b > Creating Expected Premiums timeline:
+
+											<span *ngIf="done" style="font-size: 50%;">
+												<span class="spinner-border" role="status" style="height: 10px;width: 10px;">
+												  <span class="sr-only" id="loading" style="height: 10px;width: 10px;"></span>
+												</span>
+											</span>
+
+
+										</b>{{result}}<i style="color: green;font-size: 140%;margin-left: 5px;" [innerHTML]="tick"></i>
+									</li>
+
+									<li *ngIf="showmeb" style="color: navy;"><b > Creating Expected Reinsurance premiums timeline:
+
+											<span *ngIf="doneb" style="font-size: 50%;">
+												<span class="spinner-border" role="status" style="height: 10px;width: 10px;">
+												  <span class="sr-only" id="loading" style="height: 10px;width: 10px;"></span>
+												</span>
+											</span>
+
+
+										</b>{{resultb}}<i style="color: green;font-size: 140%;margin-left: 5px;" [innerHTML]="tickb"></i>
+									</li>
+
+
+
+
+									<li *ngIf="showme1"><span style="color:#ff33d3 ;"><b >Creating Monthly Insurance timeline :
+
+											<span *ngIf="done1" style="font-size: 50%;">
+												<span class="spinner-border" role="status" style="height: 10px;width: 10px;">
+												  <span class="sr-only" id="loading" style="height: 10px;width: 10px;"></span>
+												</span>
+											</span>
+
+										</b>{{result2}}</span><i style="color: green;font-size: 140%;margin-left: 5px;;" [innerHTML]="tick1"></i>
+									</li>
+
+
+									<li *ngIf="showme1b"><span style="color:#ff33d3 ;"><b >Creating Monthly reinsurance timeline :
+
+											<span *ngIf="done1b" style="font-size: 50%;">
+												<span class="spinner-border" role="status" style="height: 10px;width: 10px;">
+												  <span class="sr-only" id="loading" style="height: 10px;width: 10px;"></span>
+												</span>
+											</span>
+
+										</b>{{result2b}}</span><i style="color: green;font-size: 140%;margin-left: 5px;;" [innerHTML]="tick1b"></i>
+									</li>
+
+									<li *ngIf="showme2"><span style="color:#1e5472 ;"><b > Creating acquisition cost timeline :
+
+											<span *ngIf="done2" style="font-size: 50%;">
+												<span class="spinner-border" role="status" style="height: 10px;width: 10px;">
+												  <span class="sr-only" id="loading" style="height: 10px;width: 10px;"></span>
+												</span>
+											</span>
+
+										</b>{{result3}}</span><i style="color: green;font-size: 140%;margin-left: 5px;" [innerHTML]="tick2"></i>
+									</li>
+									<li *ngIf="showme2b"><span style="color:#1e5472 ;"><b > reinsurance commission :
+
+											<span *ngIf="done2b" style="font-size: 50%;">
+												<span class="spinner-border" role="status" style="height: 10px;width: 10px;">
+												  <span class="sr-only" id="loading" style="height: 10px;width: 10px;"></span>
+												</span>
+											</span>
+
+										</b>{{result3b}}</span><i style="color: green;font-size: 140%;margin-left: 5px;" [innerHTML]="tick2b"></i>
+									</li>
+									<li *ngIf="showme3"><span style="color:#afc530 ;"><b > Creating Premium received timeline :
+
+											<span *ngIf="done3" style="font-size: 50%;">
+												<span class="spinner-border" role="status" style="height: 10px;width: 10px;">
+												  <span class="sr-only" id="loading" style="height: 10px;width: 10px;"></span>
+												</span>
+											</span>
+
+										</b>{{result4}}</span><i style="color: green;font-size: 140%;margin-left: 5px;" [innerHTML]="tick3"></i>
+									</li>
+
+									<li *ngIf="showme3b"><span style="color:#afc530 ;"><b > Creating Premium  paid timeline :
+
+											<span *ngIf="done3b" style="font-size: 50%;">
+												<span class="spinner-border" role="status" style="height: 10px;width: 10px;">
+												  <span class="sr-only" id="loading" style="height: 10px;width: 10px;"></span>
+												</span>
+											</span>
+
+										</b>{{result4b}}</span><i style="color: green;font-size: 140%;margin-left: 5px;" [innerHTML]="tick3b"></i>
+									</li>
+										<li *ngIf="showme4"><span style="color:#18b33a ;"><b > Creating loss component :
+
+											<span *ngIf="done4" style="font-size: 50%;">
+												<span class="spinner-border" role="status" style="height: 10px;width: 10px;">
+												  <span class="sr-only" id="loading" style="height: 10px;width: 10px;"></span>
+												</span>
+											</span>
+
+										</b>{{result5}}</span><i style="color: green;font-size: 140%;margin-left: 5px;" [innerHTML]="tick4"></i>
+										<i style="color: red;font-size: 140%;margin-left: 5px;" [innerHTML]="cross5"></i>
+									</li>
+
+									</ul>
+									</i> -->
+
+                  </div>
+                </div>
+              </div>
+
+            </form>
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+</body>
+
+
+
+
+
+
+
+<ng-template #content let-modal>
+  <div>
+    <div class="modal-header">
+      <h4 class="modal-title" style="color: grey;font-size: 80%;" id="modal-basic-title">Response</h4>
+      <button type="button" class="btn-close" aria-label="Close" (click)="[modal.dismiss('Cross click')]"></button>
+    </div>
+    <div class="modal-body">
+
+      <p style="color:navy ;font-weight: bold;">ALL CALCULATIONS DONE <i style="color: rgb(20, 105, 20);"
+          class="fa fa-check" aria-hidden="true"></i><i style="color: rgb(20, 105, 20);" class="fa fa-check"
+          aria-hidden="true"></i>
+
+      </p>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-outline-dark" type="submit" (click)="[modal.dismiss('Cross click')]">close</button>
+    </div>
+
+  </div>
+</ng-template>

@@ -1,0 +1,40 @@
+
+    <span style="color:rgb(215, 229, 235);font-weight: 700;font-size: 80%;">
+        Lic </span>
+
+<div class="threa">
+
+	<table class="table table-striped">
+        <thead>
+            <tr><th>Groups</th><th></th></tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let lic_groups of licgroups| slice: (page-1) * pageSize : page * pageSize">
+                <td>{{lic_groups}}</td><td><i class="fa fa-book"></i></td>
+
+            </tr>
+        </tbody>
+
+    </table>
+
+<ngb-pagination *ngIf="error==null"
+    [(page)]="page"
+    [pageSize]="pageSize"
+    [collectionSize]="mylength">
+</ngb-pagination>
+
+	<button type="submit" (click)="[calculateAll_lic()]" class="btn btn-outline-dark" name="filesupload" style="margin-right: 2%;" *ngIf="error==null">Execute All
+
+        <span *ngIf="done1" style="font-size: 60%;color:#184c8f;">
+            <span class="spinner-border" role="status" style="height: 15px;width:15px">
+              <span class="sr-only" id="loading" style="height: 15px;width:15px"></span>
+            </span>
+        </span>
+    
+    </button>
+
+</div>
+
+<div class="error" *ngIf="error!=null">
+    <div class="alert alert-danger" style="font-size: 80%;margin-top: 1%;" >{{error.error.detail}} </div>
+</div>

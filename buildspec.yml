@@ -7,7 +7,7 @@ env:
 phases:
   install:
     runtime-versions:
-      nodejs: 18
+      nodejs: 14 # Use a supported version (12 or 14)
     commands:
       - echo Installing npm dependencies...
       - npm install
@@ -16,10 +16,10 @@ phases:
   build:
     commands:
       - echo Building Angular project started...
-      - ng build --configuration = production
+      - ng build --configuration=production # Remove the space around the '='
 
 artifacts:
   files:
     - "**/*"
-  base-directory: "dist*"
+  base-directory: "dist"
   discard-paths: yes

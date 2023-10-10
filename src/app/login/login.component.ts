@@ -248,13 +248,7 @@ export class LoginComponent implements OnInit {
         if (result.response == 'Authenticated') {
           this.retrieveData();
           localStorage.setItem('token', result.token);
-          console.log(result);
-          console.log(result);
-          console.log(result);
-          console.log(result);
-          console.log(result);
-          console.log(result);
-          console.log(result);
+
           this.router.navigate(['/check_is_active']);
           this.modalService.dismissAll();
         } else {

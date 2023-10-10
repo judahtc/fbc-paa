@@ -26,7 +26,8 @@ export class AuthService {
   };
 
   // base_url = 'http://localhost:8000';
-  base_url = environment.apiUrl;
+  base_url = 'https://backend.claxon-ifrs17.com';
+  // base_url = environment.apiUrl;
   URL20 = this.base_url + '/users/';
 
   retrieveData(): string | null {

@@ -7,7 +7,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "aws-deploy": "aws s3 sync dist/ifris/ s3://claxonactuaries-ifrs17.com"
+    "aws-deploy": "aws s3 sync dist/ifris/ s3://claxon-ifrs17.com"
   },
   "private": true,
   "dependencies": {
